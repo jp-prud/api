@@ -16,6 +16,10 @@ class CategoriesRepository {
       name,
     });
   }
+
+  delete(categoryName: string) {
+    return Category.deleteOne({ name: categoryName });
+  }
 }
 
 export default CategoriesRepository;

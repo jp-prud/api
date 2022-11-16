@@ -5,8 +5,8 @@ import CreateCategoryUseCase from '../useCases/createCategory/CreateCategoryUseC
 class CreateCategoryController {
   createCategoryUseCase: CreateCategoryUseCase;
 
-  constructor(CreateCategoryUseCase: CreateCategoryUseCase) {
-    this.createCategoryUseCase = CreateCategoryUseCase;
+  constructor(createCategoryUseCase: CreateCategoryUseCase) {
+    this.createCategoryUseCase = createCategoryUseCase;
   }
 
   async handle(request: Request, response: Response) {
