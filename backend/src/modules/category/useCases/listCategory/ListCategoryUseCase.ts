@@ -8,7 +8,7 @@ class ListCategoryUseCase {
   }
 
   execute() {
-    return this.categoriesRepository.list();
+    return this.categoriesRepository.index();
   }
 }
 

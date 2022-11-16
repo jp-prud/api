@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import listCategoryController from './modules/category/useCases/listCategory';
+import createCategoryController from './modules/category/useCases/createCategory';
 
 export const router = Router();
 
@@ -9,8 +10,8 @@ router.get('/categories', (request, response) =>
 );
 
 // Create categories
-router.post('/categories', (req, res) => {
-  res.send('OK');
+router.post('/categories', (request, response) => {
+  createCategoryController.handle(request, response);
 });
 
 // List products
