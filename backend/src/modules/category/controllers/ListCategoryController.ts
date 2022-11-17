@@ -9,9 +9,15 @@ class ListCategoryController {
   }
 
   async handle(request: Request, response: Response) {
-    const categories = await this.listCategoryUseCase.execute();
+    try {
+      const categories = await this.listCategoryUseCase.execute();
 
-    return response.json(categories);
+      return response.json(categories);
+    } catch (error) {
+      console.log(error);
+
+      response.send(500).json({ error: 'Internal Server Error' });
+    }
   }
 }
 

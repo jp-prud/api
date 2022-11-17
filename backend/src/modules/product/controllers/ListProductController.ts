@@ -15,6 +15,8 @@ class ListProductController {
       response.status(200).json(listProducts);
     } catch (error) {
       console.log(error);
+
+      response.send(500).json({ error: 'Internal Server Error' });
     }
   }
 }

@@ -9,9 +9,6 @@ class CreateCategoryUseCase {
   }
 
   async execute(input: ICategory) {
-    if (!input.icon) throw new Error('Icon is required');
-    if (!input.name) throw new Error('Name is required');
-
     const categoryIsAlreadyExists = await this.categoriesRepository.findByName(
       input.name,
     );

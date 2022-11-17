@@ -12,11 +12,17 @@ class DeleteCategoryController {
     const { categoryId } = request.params;
 
     try {
+      if (!categoryId) {
+        return response.status(400).json({ error: 'Category ID is required' });
+      }
+
       await this.deleteCategoryUseCase.execute(categoryId);
 
       response.sendStatus(202);
     } catch (error) {
       console.log(error);
+
+      response.send(500).json({ error: 'Internal Server Error' });
     }
   }
 }
