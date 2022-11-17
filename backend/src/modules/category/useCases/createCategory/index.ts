@@ -3,11 +3,11 @@ import CategoriesRepository from '../../repositories/CategoriesRepository';
 import CreateCategoryUseCase from './CreateCategoryUseCase';
 
 const categoriesRepository = new CategoriesRepository();
-const createCategoriesUseCases = new CreateCategoryUseCase(
-  categoriesRepository,
-);
+
+const createCategoryUseCase = new CreateCategoryUseCase(categoriesRepository);
+
 const createCategoryController = new CreateCategoryController(
-  createCategoriesUseCases,
+  createCategoryUseCase,
 );
 
 export default createCategoryController;
