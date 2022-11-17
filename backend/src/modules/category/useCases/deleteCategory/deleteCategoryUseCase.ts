@@ -7,8 +7,8 @@ class DeleteCategoryUseCase {
     this.categoriesRepository = categoriesRepository;
   }
 
-  execute(categoryName: string) {
-    return this.categoriesRepository.delete(categoryName);
+  execute(categoryId: string) {
+    return this.categoriesRepository.delete(categoryId);
   }
 }
 

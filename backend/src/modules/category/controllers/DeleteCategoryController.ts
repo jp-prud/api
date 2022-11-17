@@ -8,13 +8,13 @@ class DeleteCategoryController {
     this.deleteCategoryUseCase = deleteCategoryUseCase;
   }
 
-  handle(request: Request, response: Response) {
-    const { categoryName } = request.params;
+  async handle(request: Request, response: Response) {
+    const { categoryId } = request.params;
 
     try {
-      this.deleteCategoryUseCase.handle(categoryName);
+      await this.deleteCategoryUseCase.execute(categoryId);
 
-      response.sendStatus(201);
+      response.sendStatus(202);
     } catch (error) {
       console.log(error);
     }

@@ -17,8 +17,8 @@ class CategoriesRepository {
     });
   }
 
-  delete(categoryName: string) {
-    return Category.deleteOne({ name: categoryName });
+  delete(categoryId: string) {
+    return Category.deleteOne({ _id: categoryId });
   }
 }
 
