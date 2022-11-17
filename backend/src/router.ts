@@ -4,6 +4,7 @@ import DeleteCategoryController from './modules/category/useCases/deleteCategory
 import CreateCategoryController from './modules/category/useCases/createCategory';
 import ListCategoryController from './modules/category/useCases/listCategory';
 import ListProductController from './modules/product/useCases/listProduct';
+import CreateProductController from './modules/product/useCases/createProduct';
 
 export const router = Router();
 
@@ -29,7 +30,7 @@ router.get('/products', (request, response) => {
 
 // Create products
 router.post('/products', (request, response) => {
-  response.send('OK');
+  CreateProductController.handle(request, response);
 });
 
 // Get products by category
