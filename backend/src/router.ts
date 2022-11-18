@@ -1,12 +1,34 @@
+import path from 'node:path';
+
 import { Router } from 'express';
+import multer from 'multer';
 
 import DeleteCategoryController from './modules/category/useCases/deleteCategory';
 import CreateCategoryController from './modules/category/useCases/createCategory';
 import ListCategoryController from './modules/category/useCases/listCategory';
+
 import ListProductController from './modules/product/useCases/listProduct';
+import ListProductsByCategoryController from './modules/product/useCases/listProductsByCategory';
 import CreateProductController from './modules/product/useCases/createProduct';
+import DeleteProductController from './modules/product/useCases/deleteProduct';
+
+import ListOrderController from './modules/order/useCases/listOrder';
+import CreateOrdersController from './modules/order/useCases/createOrder';
+import UpdateOrderStatusUseCase from './modules/order/useCases/updateOrderStatus';
+import DeleteOrderController from './modules/order/useCases/deleteOrder';
 
 export const router = Router();
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination(request, file, callback) {
+      callback(null, path.resolve(__dirname, '..', 'uploads'));
+    },
+    filename(req, file, callback) {
+      callback(null, `${Date.now()}-${file.originalname}`);
+    },
+  }),
+});
 
 // List categories
 router.get('/categories', (request, response) =>
@@ -29,31 +51,36 @@ router.get('/products', (request, response) => {
 });
 
 // Create products
-router.post('/products', (request, response) => {
+router.post('/products', upload.single('image'), (request, response) => {
   CreateProductController.handle(request, response);
 });
 
 // Get products by category
 router.get('/categories/:categoryId/products', (request, response) => {
-  response.send('OK');
+  ListProductsByCategoryController.handle(request, response);
+});
+
+// Delete products
+router.delete('/products/:productId', (request, response) => {
+  DeleteProductController.handle(request, response);
 });
 
 // List orders
 router.get('/orders', (request, response) => {
-  response.send('OK');
+  ListOrderController.handle(request, response);
 });
 
 // Create order
 router.post('/orders', (request, response) => {
-  response.send('OK');
+  CreateOrdersController.handle(request, response);
 });
 
 // Change order status
 router.patch('/orders/:orderId', (request, response) => {
-  response.send('OK');
+  UpdateOrderStatusUseCase.handle(request, response);
 });
 
 // Delete or Cancel order
 router.delete('/orders/:orderId', (request, response) => {
-  response.send('OK');
+  DeleteOrderController.handle(request, response);
 });
