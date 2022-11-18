@@ -1,5 +1,5 @@
 import CategoriesRepository from '../../repositories/CategoriesRepository';
-import ListCategoryUseCase from '../../useCases/listCategory/ListCategoryUseCase';
+import ListCategoryUseCase from './ListCategoryUseCase';
 import ListCategoryController from '../../controllers/ListCategoryController';
 
 const categoriesRepository = new CategoriesRepository();
