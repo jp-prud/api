@@ -16,7 +16,7 @@ class ListCategoryController {
     } catch (error) {
       console.log(error);
 
-      response.send(500).json({ error: 'Internal Server Error' });
+      response.sendStatus(500).json({ error: 'Internal Server Error' });
     }
   }
 }
