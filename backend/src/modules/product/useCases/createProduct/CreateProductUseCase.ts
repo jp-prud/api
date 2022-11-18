@@ -1,4 +1,5 @@
 import ProductsRepository from '../../repositories/ProductsRepository';
+import { IProduct } from '../../types';
 
 class CreateProductUseCase {
   productRepository: ProductsRepository;
@@ -7,8 +8,8 @@ class CreateProductUseCase {
     this.productRepository = productRepository;
   }
 
-  execute() {
-    this.productRepository.store();
+  async execute(input: IProduct) {
+    return await this.productRepository.store(input);
   }
 }
 
